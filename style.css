@@ -1,0 +1,120 @@
+:root {
+    --primary-color: #0ff;
+    --bg-color: #050505;
+    --panel-bg: rgba(0, 0, 0, 0.7);
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--primary-color);
+}
+
+#game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Let clicks pass through to canvas where needed */
+}
+
+#info-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 20px;
+    background: var(--panel-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    pointer-events: auto;
+    max-width: 300px;
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.slider-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.controls-hint {
+    margin-top: 15px;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+    padding-top: 10px;
+}
+
+#joystick-zone {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+    pointer-events: auto;
+}
+
+/* Mobile/Desktop Visibility */
+.mobile-only { display: none; }
+.desktop-only { display: block; }
+
+@media (max-width: 768px) {
+    .mobile-only { display: block; }
+    .desktop-only { display: none; }
+    
+    #info-panel {
+        top: auto;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        width: auto;
+        max-width: none;
+    }
+    
+    #joystick-zone {
+        left: 20px;
+        bottom: 180px; /* Above the panel */
+    }
+}
